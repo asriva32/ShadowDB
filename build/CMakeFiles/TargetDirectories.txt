@@ -1,0 +1,3 @@
+/Users/arnavsrivastava/Desktop/KVStore/build/CMakeFiles/KVStore.dir
+/Users/arnavsrivastava/Desktop/KVStore/build/CMakeFiles/edit_cache.dir
+/Users/arnavsrivastava/Desktop/KVStore/build/CMakeFiles/rebuild_cache.dir

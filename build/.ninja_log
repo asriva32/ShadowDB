@@ -1,0 +1,18 @@
+# ninja log v5
+83	531	1759977741432188230	CMakeFiles/KVStore.dir/src/Client.cpp.o	7ba27f657f80a8cb
+73	81	1759977772930907821	CMakeFiles/KVStore.dir/src/Client.cpp.o.modmap	c4faed8606219b54
+7	73	1759977740974076432	CMakeFiles/KVStore.dir/src/Client.cpp.o.ddi	144d724724a813e5
+73	81	1759977772930907821	CMakeFiles/KVStore.dir/CXX.dd	c4faed8606219b54
+8	73	1759977772930907821	CMakeFiles/KVStore.dir/src/Server.cpp.o.ddi	11dbd3309f2688f8
+441	494	1759803271269141244	KVStore	d31c394f80284adf
+73	81	1759977772930907821	/Users/arnavsrivastava/Desktop/KVStore/build/CMakeFiles/KVStore.dir/CXXModules.json	c4faed8606219b54
+73	81	1759977772930907821	CMakeFiles/KVStore.dir/src/Server.cpp.o.modmap	c4faed8606219b54
+81	531	1759977773387516377	CMakeFiles/KVStore.dir/src/Server.cpp.o	7085b332b5c72970
+7	83	1759977849508651455	CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o.ddi	67eefacdc35e273f
+83	91	1759977849508651455	CMakeFiles/KVStore.dir/CXX.dd	1e01e38241456be4
+83	91	1759977849508651455	/Users/arnavsrivastava/Desktop/KVStore/build/CMakeFiles/KVStore.dir/CXXModules.json	1e01e38241456be4
+83	91	1759977849508651455	CMakeFiles/KVStore.dir/src/Server.cpp.o.modmap	1e01e38241456be4
+83	91	1759977849508651455	CMakeFiles/KVStore.dir/src/Client.cpp.o.modmap	1e01e38241456be4
+83	91	1759977849508651455	CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o.modmap	1e01e38241456be4
+91	630	1759977850054576722	CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o	ade6805344dffebb
+631	685	1759977850111150627	KVStore	78e2b4e17d1200d2
