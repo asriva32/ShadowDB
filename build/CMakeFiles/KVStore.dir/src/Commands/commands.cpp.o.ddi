@@ -1,0 +1,9 @@
+{
+  "revision": 0,
+  "rules": [
+    {
+      "primary-output": "CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o"
+    }
+  ],
+  "version": 1
+}

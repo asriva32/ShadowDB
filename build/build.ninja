@@ -100,7 +100,24 @@ build CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o: CXX_COMPILER__KVStore_scanned_
   OBJECT_FILE_DIR = CMakeFiles/KVStore.dir/src/RESP
   dyndep = CMakeFiles/KVStore.dir/CXX.dd
 
-build CMakeFiles/KVStore.dir/CXX.dd | /Users/arnavsrivastava/Desktop/KVStore/build/CMakeFiles/KVStore.dir/CXXModules.json CMakeFiles/KVStore.dir/src/Server.cpp.o.modmap CMakeFiles/KVStore.dir/src/Client.cpp.o.modmap CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o.modmap: CXX_DYNDEP__KVStore_Debug CMakeFiles/KVStore.dir/src/Server.cpp.o.ddi CMakeFiles/KVStore.dir/src/Client.cpp.o.ddi CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o.ddi | /Users/arnavsrivastava/Desktop/KVStore/build/CMakeFiles/KVStore.dir/CXXDependInfo.json
+build CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.ddi: CXX_SCAN__KVStore_Debug /Users/arnavsrivastava/Desktop/KVStore/src/Commands/commands.cpp || cmake_object_order_depends_target_KVStore
+  DEP_FILE = CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.ddi
+  FLAGS = -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk
+  INCLUDES = -I/Users/arnavsrivastava/Desktop/KVStore/.
+  OBJ_FILE = CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.ddi.i
+
+build CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o: CXX_COMPILER__KVStore_scanned_Debug /Users/arnavsrivastava/Desktop/KVStore/src/Commands/commands.cpp | CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.modmap || cmake_object_order_depends_target_KVStore CMakeFiles/KVStore.dir/CXX.dd
+  DEP_FILE = CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.modmap
+  FLAGS = -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk
+  INCLUDES = -I/Users/arnavsrivastava/Desktop/KVStore/.
+  OBJECT_DIR = CMakeFiles/KVStore.dir
+  OBJECT_FILE_DIR = CMakeFiles/KVStore.dir/src/Commands
+  dyndep = CMakeFiles/KVStore.dir/CXX.dd
+
+build CMakeFiles/KVStore.dir/CXX.dd | /Users/arnavsrivastava/Desktop/KVStore/build/CMakeFiles/KVStore.dir/CXXModules.json CMakeFiles/KVStore.dir/src/Server.cpp.o.modmap CMakeFiles/KVStore.dir/src/Client.cpp.o.modmap CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o.modmap CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.modmap: CXX_DYNDEP__KVStore_Debug CMakeFiles/KVStore.dir/src/Server.cpp.o.ddi CMakeFiles/KVStore.dir/src/Client.cpp.o.ddi CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o.ddi CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.ddi | /Users/arnavsrivastava/Desktop/KVStore/build/CMakeFiles/KVStore.dir/CXXDependInfo.json
 
 
 # =============================================================================
@@ -110,7 +127,7 @@ build CMakeFiles/KVStore.dir/CXX.dd | /Users/arnavsrivastava/Desktop/KVStore/bui
 #############################################
 # Link the executable KVStore
 
-build KVStore: CXX_EXECUTABLE_LINKER__KVStore_Debug CMakeFiles/KVStore.dir/src/Server.cpp.o CMakeFiles/KVStore.dir/src/Client.cpp.o CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o
+build KVStore: CXX_EXECUTABLE_LINKER__KVStore_Debug CMakeFiles/KVStore.dir/src/Server.cpp.o CMakeFiles/KVStore.dir/src/Client.cpp.o CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk
   OBJECT_DIR = CMakeFiles/KVStore.dir
   POST_BUILD = :

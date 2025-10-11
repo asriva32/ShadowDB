@@ -5,3 +5,5 @@ build CMakeFiles/KVStore.dir/src/Client.cpp.o: dyndep
 
 build CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o: dyndep
 
+build CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o: dyndep
+

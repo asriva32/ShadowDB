@@ -10,4 +10,5 @@ include_directories(.)
 add_executable(${PROJECT_NAME} 
                 src/Server.cpp 
                 src/Client.cpp
-                src/RESP/resp.cpp)
+                src/RESP/resp.cpp
+                src/Commands/commands.cpp)

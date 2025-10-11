@@ -2,7 +2,6 @@
 #define CLIENT_H
 
 #include <unistd.h>
-#include "DB/KVStore.h"
 
 class Client{
 
@@ -13,7 +12,7 @@ public:
 
     int get_fd() const { return client_fd; }
     
-    void handle_request(KVStore &kv);
+    void handle_request();
 
 private:
     int client_fd;

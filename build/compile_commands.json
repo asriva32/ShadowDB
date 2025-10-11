@@ -16,5 +16,11 @@
   "command": "/opt/homebrew/opt/llvm/bin/clang++ -I/Users/arnavsrivastava/Desktop/KVStore/. -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk @CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o.modmap -o CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o -c /Users/arnavsrivastava/Desktop/KVStore/src/RESP/resp.cpp",
   "file": "/Users/arnavsrivastava/Desktop/KVStore/src/RESP/resp.cpp",
   "output": "CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o"
+},
+{
+  "directory": "/Users/arnavsrivastava/Desktop/KVStore/build",
+  "command": "/opt/homebrew/opt/llvm/bin/clang++ -I/Users/arnavsrivastava/Desktop/KVStore/. -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk @CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.modmap -o CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o -c /Users/arnavsrivastava/Desktop/KVStore/src/Commands/commands.cpp",
+  "file": "/Users/arnavsrivastava/Desktop/KVStore/src/Commands/commands.cpp",
+  "output": "CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o"
 }
 ]

@@ -7,16 +7,14 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-#include "Client.h"
-#include "DB/KVStore.h"
+#include "../include/Client.h"
+#include "../include/KVStore.h"
 #include <thread>
 
 int main(int argc, char **argv) {
   // Flush after every std::cout / std::cerr
   std::cout << std::unitbuf;
   std::cerr << std::unitbuf;
-  
-  KVStore kv;
   
   int server_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (server_fd < 0) {
@@ -58,10 +56,10 @@ int main(int argc, char **argv) {
     int client_fd = accept(server_fd, (struct sockaddr *)&client_addr, (socklen_t *)&client_addr_len);
     std::cout << "Client connected\n";
 
-    std::thread t([client_fd, &kv]()
+    std::thread t([client_fd]()
       {
         Client client(client_fd);
-        client.handle_request(kv);
+        client.handle_request();
       });
     t.detach();
   }

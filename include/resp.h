@@ -1,12 +1,12 @@
 #ifndef RESP_H
 #define RESP_H
-#include "../DB/KVStore.h"
 #include <string>
 #include <vector>
 #include <cstdint>
 #include <unordered_map>
 #include <optional>
 #include <variant>
+#include "KVStore.h"
 
 enum RESPType{
     SIMPLE_STRING,
@@ -24,14 +24,14 @@ const std::unordered_map<char, RESPType> RESP_TYPE_MAP = {
 
 struct RESP{
     RESPType type;
-    std::variant<std::string, int64_t> value;
+    std::string value;
     RESP() = default;
-    RESP(RESPType t, const std::variant<std::string, int64_t> &v) : type(t), value(v) {}
+    RESP(RESPType t, std::string v) : type(t), value(std::move(v)) {}
     
 };
 
 
-std::string parse_resp(const char* data, size_t length, KVStore &kv);
+std::string parse_resp(const char* data, size_t length);
 
 
 

@@ -1,52 +1,30 @@
-#include "resp.h"
+#include "../../include/resp.h"
+#include "../../include/commands.h"
 #include <stdexcept>
 #include <iostream>
 #include <algorithm>
 
 const std::string CRLF = "\r\n";
 
-std::string parse_commands(const std::vector<RESP> &resps, KVStore &kv){
+std::string parse_commands(const std::vector<RESP> &resps){
     if(resps.size() == 0){
         return "-ERR unknown command \r\n";
     }
     if(resps[0].type != RESPType::BULK_STRING){
         return "-ERR unexpected command \r\n";
     }
-    std::string command = std::get<std::string>(resps[0].value);
+
+    std::string command = resps[0].value;
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
-    if(command == "ping"){
-        return "+PONG\r\n";
-    }else if(command == "echo"){
-        if(resps.size() != 2 || resps[1].type != RESPType::BULK_STRING){
-            return "-ERR wrong number of arguments for 'echo' command\r\n";
-        }
-        std::string message = std::get<std::string>(resps[1].value);
-        return "$" + std::to_string(message.size()) + CRLF + message + CRLF;
-    }else if(command == "get"){
-        if(resps.size() != 2 || resps[1].type != RESPType::BULK_STRING){
-            return "-ERR wrong number of arguments for 'get' command\r\n";
-        }
-        std::string key = std::get<std::string>(resps[1].value);
-        std::string value = kv.get(key);
-        if(value == "-1"){
-            return "$-1\r\n";
-        }
-        return "$" + std::to_string(value.length()) + CRLF + value + CRLF;
-    }else if(command == "set"){
-        if(resps.size() != 3 || resps[1].type != RESPType::BULK_STRING || resps[2].type != RESPType::BULK_STRING){
-            return "-ERR wrong number of arguments for 'set' command\r\n";
-        }
-        std::string key = std::get<std::string>(resps[1].value);
-        std::string value = std::get<std::string>(resps[2].value);
-        std::string result = kv.set(key, value);
-        return "+" + result + CRLF;
+    if(COMMAND_MAP.find(command) != COMMAND_MAP.end()){
+        return COMMAND_MAP.at(command)(resps);
     }else{
         return "-ERR unknown command " + command + "'\r\n";
     }
 }
 
 
-std::string parse_resp(const char* data, size_t length, KVStore &kv){
+std::string parse_resp(const char* data, size_t length){
     if(length == 0){
         return "-ERR Protocol error: invalid request length\r\n";
     }
@@ -80,7 +58,7 @@ std::string parse_resp(const char* data, size_t length, KVStore &kv){
             return "-ERR Protocol error: invalid bulk string format\r\n";
         }
         std::string data = s_length == 0 ? "" : sv.substr(pos + 2, s_length);
-        RESP r = RESP(type, data);
+        RESP r(type, data);
         resps.push_back(r);
 
         i = next_pos + 1;
@@ -88,6 +66,6 @@ std::string parse_resp(const char* data, size_t length, KVStore &kv){
     if(resps.size() != len){
         return "-ERR Protocol error: invalid multibulk length\r\n";
     }
-    return parse_commands(resps, kv);
+    return parse_commands(resps);
 
 }
