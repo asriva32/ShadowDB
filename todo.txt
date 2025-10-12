@@ -1,1 +1,3 @@
-- Log structured storage engine
+- implement skiplist
+- implement memtable
+- implement sstable
