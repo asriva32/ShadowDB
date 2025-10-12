@@ -4,9 +4,6 @@
 #include <vector>
 #include <cstdint>
 #include <unordered_map>
-#include <optional>
-#include <variant>
-#include "KVStore.h"
 
 enum RESPType{
     SIMPLE_STRING,
@@ -27,11 +24,10 @@ struct RESP{
     std::string value;
     RESP() = default;
     RESP(RESPType t, std::string v) : type(t), value(std::move(v)) {}
-    
 };
 
 
-std::string parse_resp(const char* data, size_t length);
+std::string parse_resp(std::string data);
 
 
 

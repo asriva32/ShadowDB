@@ -1,9 +1,0 @@
-{
-  "revision": 0,
-  "rules": [
-    {
-      "primary-output": "CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o"
-    }
-  ],
-  "version": 1
-}

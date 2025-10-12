@@ -1,4 +1,5 @@
-#include "../../include/commands.h"
+#include "include/commands.h"
+#include "include/db_wrapper.h"
 #include <iostream>
 
 const std::string CRLF = "\r\n";
@@ -22,10 +23,10 @@ std::string set(const std::vector<RESP> &resps){
             return "-ERR 4th argument is invalid" + CRLF;
         }
     }
-    KVStore &kv = KVStore::getInstance();
+    DB &kv = DB::getInstance();
     std::string key = resps[1].value;
     std::string value = resps[2].value;
-    std::string result = kv.set(key, value, expiry);
+    std::string result = kv.Set(key, value);
     return "+" + result + CRLF;
 }
 
@@ -33,9 +34,9 @@ std::string get(const std::vector<RESP> &resps){
     if(resps.size() != 2 || resps[1].type != RESPType::BULK_STRING){
         return "-ERR wrong number of arguments for 'get' command" + CRLF;
     }
-    KVStore &kv = KVStore::getInstance();
+    DB &kv = DB::getInstance();
     std::string key = resps[1].value;
-    std::string value = kv.get(key);
+    std::string value = kv.Get(key);
     if(value == "-1"){
         return "$-1" + CRLF;
     }

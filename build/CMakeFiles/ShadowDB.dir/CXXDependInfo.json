@@ -1,0 +1,45 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "Clang",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"database-info" : null,
+	"dir-cur-bld" : "/Users/arnavsrivastava/Desktop/ShadowDB/build",
+	"dir-cur-src" : "/Users/arnavsrivastava/Desktop/ShadowDB",
+	"dir-top-bld" : "/Users/arnavsrivastava/Desktop/ShadowDB/build",
+	"dir-top-src" : "/Users/arnavsrivastava/Desktop/ShadowDB",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : 
+	[
+		"/Users/arnavsrivastava/Desktop/ShadowDB/."
+	],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/Users/arnavsrivastava/Desktop/ShadowDB/build/CMakeFiles/ShadowDB.dir",
+	"sources" : 
+	{
+		"CMakeFiles/ShadowDB.dir/Commands/commands.cpp.o" : 
+		{
+			"language" : "CXX",
+			"source" : "/Users/arnavsrivastava/Desktop/ShadowDB/Commands/commands.cpp"
+		},
+		"CMakeFiles/ShadowDB.dir/RESP/Client.cpp.o" : 
+		{
+			"language" : "CXX",
+			"source" : "/Users/arnavsrivastava/Desktop/ShadowDB/RESP/Client.cpp"
+		},
+		"CMakeFiles/ShadowDB.dir/RESP/Server.cpp.o" : 
+		{
+			"language" : "CXX",
+			"source" : "/Users/arnavsrivastava/Desktop/ShadowDB/RESP/Server.cpp"
+		},
+		"CMakeFiles/ShadowDB.dir/RESP/resp.cpp.o" : 
+		{
+			"language" : "CXX",
+			"source" : "/Users/arnavsrivastava/Desktop/ShadowDB/RESP/resp.cpp"
+		}
+	}
+}

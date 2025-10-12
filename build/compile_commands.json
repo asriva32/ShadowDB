@@ -1,26 +1,26 @@
 [
 {
-  "directory": "/Users/arnavsrivastava/Desktop/KVStore/build",
-  "command": "/opt/homebrew/opt/llvm/bin/clang++ -I/Users/arnavsrivastava/Desktop/KVStore/. -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk @CMakeFiles/KVStore.dir/src/Server.cpp.o.modmap -o CMakeFiles/KVStore.dir/src/Server.cpp.o -c /Users/arnavsrivastava/Desktop/KVStore/src/Server.cpp",
-  "file": "/Users/arnavsrivastava/Desktop/KVStore/src/Server.cpp",
-  "output": "CMakeFiles/KVStore.dir/src/Server.cpp.o"
+  "directory": "/Users/arnavsrivastava/Desktop/ShadowDB/build",
+  "command": "/opt/homebrew/opt/llvm/bin/clang++ -I/Users/arnavsrivastava/Desktop/ShadowDB/. -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk @CMakeFiles/ShadowDB.dir/RESP/Server.cpp.o.modmap -o CMakeFiles/ShadowDB.dir/RESP/Server.cpp.o -c /Users/arnavsrivastava/Desktop/ShadowDB/RESP/Server.cpp",
+  "file": "/Users/arnavsrivastava/Desktop/ShadowDB/RESP/Server.cpp",
+  "output": "CMakeFiles/ShadowDB.dir/RESP/Server.cpp.o"
 },
 {
-  "directory": "/Users/arnavsrivastava/Desktop/KVStore/build",
-  "command": "/opt/homebrew/opt/llvm/bin/clang++ -I/Users/arnavsrivastava/Desktop/KVStore/. -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk @CMakeFiles/KVStore.dir/src/Client.cpp.o.modmap -o CMakeFiles/KVStore.dir/src/Client.cpp.o -c /Users/arnavsrivastava/Desktop/KVStore/src/Client.cpp",
-  "file": "/Users/arnavsrivastava/Desktop/KVStore/src/Client.cpp",
-  "output": "CMakeFiles/KVStore.dir/src/Client.cpp.o"
+  "directory": "/Users/arnavsrivastava/Desktop/ShadowDB/build",
+  "command": "/opt/homebrew/opt/llvm/bin/clang++ -I/Users/arnavsrivastava/Desktop/ShadowDB/. -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk @CMakeFiles/ShadowDB.dir/RESP/Client.cpp.o.modmap -o CMakeFiles/ShadowDB.dir/RESP/Client.cpp.o -c /Users/arnavsrivastava/Desktop/ShadowDB/RESP/Client.cpp",
+  "file": "/Users/arnavsrivastava/Desktop/ShadowDB/RESP/Client.cpp",
+  "output": "CMakeFiles/ShadowDB.dir/RESP/Client.cpp.o"
 },
 {
-  "directory": "/Users/arnavsrivastava/Desktop/KVStore/build",
-  "command": "/opt/homebrew/opt/llvm/bin/clang++ -I/Users/arnavsrivastava/Desktop/KVStore/. -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk @CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o.modmap -o CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o -c /Users/arnavsrivastava/Desktop/KVStore/src/RESP/resp.cpp",
-  "file": "/Users/arnavsrivastava/Desktop/KVStore/src/RESP/resp.cpp",
-  "output": "CMakeFiles/KVStore.dir/src/RESP/resp.cpp.o"
+  "directory": "/Users/arnavsrivastava/Desktop/ShadowDB/build",
+  "command": "/opt/homebrew/opt/llvm/bin/clang++ -I/Users/arnavsrivastava/Desktop/ShadowDB/. -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk @CMakeFiles/ShadowDB.dir/RESP/resp.cpp.o.modmap -o CMakeFiles/ShadowDB.dir/RESP/resp.cpp.o -c /Users/arnavsrivastava/Desktop/ShadowDB/RESP/resp.cpp",
+  "file": "/Users/arnavsrivastava/Desktop/ShadowDB/RESP/resp.cpp",
+  "output": "CMakeFiles/ShadowDB.dir/RESP/resp.cpp.o"
 },
 {
-  "directory": "/Users/arnavsrivastava/Desktop/KVStore/build",
-  "command": "/opt/homebrew/opt/llvm/bin/clang++ -I/Users/arnavsrivastava/Desktop/KVStore/. -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk @CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o.modmap -o CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o -c /Users/arnavsrivastava/Desktop/KVStore/src/Commands/commands.cpp",
-  "file": "/Users/arnavsrivastava/Desktop/KVStore/src/Commands/commands.cpp",
-  "output": "CMakeFiles/KVStore.dir/src/Commands/commands.cpp.o"
+  "directory": "/Users/arnavsrivastava/Desktop/ShadowDB/build",
+  "command": "/opt/homebrew/opt/llvm/bin/clang++ -I/Users/arnavsrivastava/Desktop/ShadowDB/. -g -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk @CMakeFiles/ShadowDB.dir/Commands/commands.cpp.o.modmap -o CMakeFiles/ShadowDB.dir/Commands/commands.cpp.o -c /Users/arnavsrivastava/Desktop/ShadowDB/Commands/commands.cpp",
+  "file": "/Users/arnavsrivastava/Desktop/ShadowDB/Commands/commands.cpp",
+  "output": "CMakeFiles/ShadowDB.dir/Commands/commands.cpp.o"
 }
 ]

@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "KVStore"
+			"path" : "ShadowDB"
 		}
 	],
 	"backtrace" : 1,
@@ -49,7 +49,7 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/Users/arnavsrivastava/Desktop/KVStore/."
+					"path" : "/Users/arnavsrivastava/Desktop/ShadowDB/."
 				}
 			],
 			"language" : "CXX",
@@ -70,7 +70,7 @@
 			]
 		}
 	],
-	"id" : "KVStore::@6890427a1f51a3e7e1df",
+	"id" : "ShadowDB::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -86,8 +86,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "KVStore",
-	"nameOnDisk" : "KVStore",
+	"name" : "ShadowDB",
+	"nameOnDisk" : "ShadowDB",
 	"paths" : 
 	{
 		"build" : ".",
@@ -111,25 +111,25 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/Server.cpp",
+			"path" : "RESP/Server.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/Client.cpp",
+			"path" : "RESP/Client.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/RESP/resp.cpp",
+			"path" : "RESP/resp.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/Commands/commands.cpp",
+			"path" : "Commands/commands.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
