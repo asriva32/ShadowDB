@@ -1,60 +1,42 @@
-#include "include/commands.h"
-#include "include/db_wrapper.h"
+#include "../../include/commands.h"
+#include "../../include/db_wrapper.h"
 #include <iostream>
 
-const std::string CRLF = "\r\n";
 
-
-std::string set(const std::vector<RESP> &resps){
-    if(resps.size() != 3 && resps.size() != 5){
-        return "-ERR wrong number of arguments for 'set' command" + CRLF;
-    }
-
-    for(int i = 1; i < resps.size();i++){
-        if(resps[i].type != RESPType::BULK_STRING){
-            return "-ERR expected bulk string arguments" + CRLF;
-        }
-    }
-    int64_t expiry = -1;
-    if(resps.size() == 5){
-        if(resps[3].value == "PX"){
-            expiry = stoll(resps[4].value);
-        }else{
-            return "-ERR 4th argument is invalid" + CRLF;
-        }
+std::shared_ptr<RespType> set(const std::vector<BulkString> &resps){
+    if(resps.size() != 3){
+        return std::make_shared<RespError>("ERR wrong number of arguments for 'set' command");
     }
     DB &kv = DB::getInstance();
-    std::string key = resps[1].value;
-    std::string value = resps[2].value;
+    std::string key = resps[1].getRaw();
+    std::string value = resps[2].getRaw();
     std::string result = kv.Set(key, value);
-    return "+" + result + CRLF;
+    return std::make_shared<SimpleString>(result);
 }
 
-std::string get(const std::vector<RESP> &resps){
-    if(resps.size() != 2 || resps[1].type != RESPType::BULK_STRING){
-        return "-ERR wrong number of arguments for 'get' command" + CRLF;
+std::shared_ptr<RespType> get(const std::vector<BulkString> &resps){
+    if(resps.size() != 2){
+        return std::make_shared<RespError>("ERR wrong number of arguments for 'get' command");
     }
     DB &kv = DB::getInstance();
-    std::string key = resps[1].value;
-    std::string value = kv.Get(key);
+    std::string value = kv.Get(resps[1].getRaw());
     if(value == "-1"){
-        return "$-1" + CRLF;
+        return std::make_shared<BulkString>("-1");
     }
-    return "$" + std::to_string(value.length()) + CRLF + value + CRLF;
+    return std::make_shared<BulkString>(value);
 }
 
-std::string echo(const std::vector<RESP> &resps){
-    if(resps.size() != 2 || resps[1].type != RESPType::BULK_STRING){
-        return "-ERR wrong number of arguments for 'echo' command" + CRLF;
+std::shared_ptr<RespType> echo(const std::vector<BulkString> &resps){
+    if(resps.size() != 2){
+        return std::make_shared<RespError>("ERR wrong number of arguments for 'echo' command");
     }
-    std::string message = resps[1].value;
-    return "$" + std::to_string(message.size()) + CRLF + message + CRLF;
+    return std::make_shared<BulkString>(resps[1]);
 }
 
-std::string ping(const std::vector<RESP> &resps){
+std::shared_ptr<RespType> ping(const std::vector<BulkString> &resps){
     if(resps.size() == 1){
-        return "+PONG" + CRLF;
+        return std::make_shared<SimpleString>("PONG");
     }else{
-        return "-ERR wrong number of arguments for 'ping' command" + CRLF;
+        return std::make_shared<RespError>("ERR wrong number of arguments for 'ping' command");
     }
 }

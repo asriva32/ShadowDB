@@ -3,8 +3,8 @@
 #include <iostream>
 #include <sys/socket.h>
 #include <cstring>
-#include "include/Client.h"
-#include "include/resp.h"
+#include "../include/client.h"
+#include "../include/resp.h"
 
 #define BUFFER_SIZE 2048
 

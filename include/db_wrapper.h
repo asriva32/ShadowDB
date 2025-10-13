@@ -3,8 +3,8 @@
 
 #include <mutex>
 #include <memory>
-#include "db/db.h"
-#include "db/status.h"
+#include "../db/db.h"
+#include "../db/status.h"
 
 
 class DB {

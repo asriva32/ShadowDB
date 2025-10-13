@@ -1,19 +1,19 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 
-#include "include/resp.h"
+#include "resp.h"
 #include <string>
 #include <unordered_map>
 #include <functional>
 #include <vector>
 
 
-std::string get(const std::vector<RESP> &resps);
-std::string set(const std::vector<RESP> &resps);
-std::string echo(const std::vector<RESP> &resps);
-std::string ping(const std::vector<RESP> &resps);
+std::shared_ptr<RespType> get(const std::vector<BulkString> &resps);
+std::shared_ptr<RespType> set(const std::vector<BulkString> &resps);
+std::shared_ptr<RespType> echo(const std::vector<BulkString> &resps);
+std::shared_ptr<RespType> ping(const std::vector<BulkString> &resps);
 
-const std::unordered_map<std::string, std::function<std::string(const std::vector<RESP>&)>> COMMAND_MAP = {
+const std::unordered_map<std::string, std::function<std::shared_ptr<RespType>(const std::vector<BulkString>&)>> COMMAND_MAP = {
     {"set", set},
     {"get", get},
     {"echo", echo},

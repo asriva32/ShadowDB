@@ -1,36 +1,8 @@
 #ifndef RESP_H
 #define RESP_H
-#include <string>
-#include <vector>
-#include <cstdint>
-#include <unordered_map>
+#include "resp_types.h"
 
-enum RESPType{
-    SIMPLE_STRING,
-    ERROR,
-    INTEGER,
-    BULK_STRING,
-    ARRAY
-};
+std::shared_ptr<RespType> perform_command(const RespArray &r);
+std::string parse_resp(const std::string &input);
 
-const std::unordered_map<char, RESPType> RESP_TYPE_MAP = {
-    {'*', RESPType::ARRAY},
-    {'$', RESPType::BULK_STRING}
-};
-
-
-struct RESP{
-    RESPType type;
-    std::string value;
-    RESP() = default;
-    RESP(RESPType t, std::string v) : type(t), value(std::move(v)) {}
-};
-
-
-std::string parse_resp(std::string data);
-
-
-
-
-
-#endif // RESP_H
+#endif //RESP_H

@@ -1,0 +1,9 @@
+{
+  "revision": 0,
+  "rules": [
+    {
+      "primary-output": "CMakeFiles/ShadowDB.dir/db/memtable.cpp.o"
+    }
+  ],
+  "version": 1
+}

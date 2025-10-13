@@ -7,8 +7,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories(.)
 
-add_executable(${PROJECT_NAME} 
-                RESP/Server.cpp 
-                RESP/Client.cpp
-                RESP/resp.cpp
-                Commands/commands.cpp)
+file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS
+    "${PROJECT_SOURCE_DIR}/db/*.cpp"
+    "${PROJECT_SOURCE_DIR}/resp/*.cpp"
+)
+
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})

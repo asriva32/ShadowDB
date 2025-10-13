@@ -1,3 +1,0 @@
-/Users/arnavsrivastava/Desktop/ShadowDB/build/CMakeFiles/ShadowDB.dir
-/Users/arnavsrivastava/Desktop/ShadowDB/build/CMakeFiles/edit_cache.dir
-/Users/arnavsrivastava/Desktop/ShadowDB/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,15 @@
+ninja_dyndep_version = 1.0
+build CMakeFiles/ShadowDB.dir/db/db_impl.cpp.o: dyndep
+
+build CMakeFiles/ShadowDB.dir/db/memtable.cpp.o: dyndep
+
+build CMakeFiles/ShadowDB.dir/resp/client.cpp.o: dyndep
+
+build CMakeFiles/ShadowDB.dir/resp/commands/commands.cpp.o: dyndep
+
+build CMakeFiles/ShadowDB.dir/resp/resp.cpp.o: dyndep
+
+build CMakeFiles/ShadowDB.dir/resp/resp_types.cpp.o: dyndep
+
+build CMakeFiles/ShadowDB.dir/resp/server.cpp.o: dyndep
+
