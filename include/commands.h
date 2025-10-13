@@ -8,12 +8,12 @@
 #include <vector>
 
 
-std::shared_ptr<RespType> get(const std::vector<BulkString> &resps);
-std::shared_ptr<RespType> set(const std::vector<BulkString> &resps);
-std::shared_ptr<RespType> echo(const std::vector<BulkString> &resps);
-std::shared_ptr<RespType> ping(const std::vector<BulkString> &resps);
+Resp get(const std::vector<Resp> &resps);
+Resp set(const std::vector<Resp> &resps);
+Resp echo(const std::vector<Resp> &resps);
+Resp ping(const std::vector<Resp> &resps);
 
-const std::unordered_map<std::string, std::function<std::shared_ptr<RespType>(const std::vector<BulkString>&)>> COMMAND_MAP = {
+const std::unordered_map<std::string, std::function<Resp(const std::vector<Resp>&)>> COMMAND_MAP = {
     {"set", set},
     {"get", get},
     {"echo", echo},

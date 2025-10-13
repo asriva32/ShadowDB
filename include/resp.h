@@ -2,7 +2,8 @@
 #define RESP_H
 #include "resp_types.h"
 
-std::shared_ptr<RespType> perform_command(const RespArray &r);
-std::string parse_resp(const std::string &input);
+Resp build_resp_array(const std::string &input);
+Resp perform_command(const Resp &r);
+std::string parse_request(const std::string &input);
 
 #endif //RESP_H

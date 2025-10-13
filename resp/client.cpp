@@ -24,7 +24,7 @@ void Client::handle_request() {
         }else{
             std::cout << "Received: " << std::string_view(buffer, bytes_received) << "\n";
             buffer[bytes_received] = '\0';
-            std::string resp = parse_resp(buffer);
+            std::string resp = parse_request(buffer);
             std::cout << "Response: " << resp << '\n';
             ssize_t bytes_sent = send(client_fd, resp.c_str(), resp.size(), 0);
             if(bytes_sent < 0){

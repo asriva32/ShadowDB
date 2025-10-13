@@ -3,40 +3,44 @@
 #include <iostream>
 
 
-std::shared_ptr<RespType> set(const std::vector<BulkString> &resps){
+
+Resp set(const std::vector<Resp> &resps){
     if(resps.size() != 3){
-        return std::make_shared<RespError>("ERR wrong number of arguments for 'set' command");
+        return Resp("ERR wrong number of arguments for 'set' command", RespType::ERROR);
     }
     DB &kv = DB::getInstance();
-    std::string key = resps[1].getRaw();
-    std::string value = resps[2].getRaw();
+    std::string key = std::get<std::string>(resps[1].getRaw());
+    std::string value = std::get<std::string>(resps[2].getRaw());
     std::string result = kv.Set(key, value);
-    return std::make_shared<SimpleString>(result);
+    if(result != "OK"){
+        return Resp(result, RespType::ERROR);
+    }
+    return Resp(result, RespType::SIMPLE_STRING);
 }
 
-std::shared_ptr<RespType> get(const std::vector<BulkString> &resps){
+Resp get(const std::vector<Resp> &resps){
     if(resps.size() != 2){
-        return std::make_shared<RespError>("ERR wrong number of arguments for 'get' command");
+        return Resp("ERR wrong number of arguments for 'get' command", RespType::ERROR);
     }
     DB &kv = DB::getInstance();
-    std::string value = kv.Get(resps[1].getRaw());
+    std::string value = kv.Get(std::get<std::string>(resps[1].getRaw()));
     if(value == "-1"){
-        return std::make_shared<BulkString>("-1");
+        return Resp("-1", RespType::BULK_STRING);
     }
-    return std::make_shared<BulkString>(value);
+    return Resp(value, RespType::BULK_STRING);
 }
 
-std::shared_ptr<RespType> echo(const std::vector<BulkString> &resps){
+Resp echo(const std::vector<Resp> &resps){
     if(resps.size() != 2){
-        return std::make_shared<RespError>("ERR wrong number of arguments for 'echo' command");
+        return Resp("ERR wrong number of arguments for 'echo' command", RespType::ERROR);
     }
-    return std::make_shared<BulkString>(resps[1]);
+    return resps[1];
 }
 
-std::shared_ptr<RespType> ping(const std::vector<BulkString> &resps){
+Resp ping(const std::vector<Resp> &resps){
     if(resps.size() == 1){
-        return std::make_shared<SimpleString>("PONG");
+        return Resp("PONG", RespType::SIMPLE_STRING);
     }else{
-        return std::make_shared<RespError>("ERR wrong number of arguments for 'ping' command");
+        return Resp("ERR wrong number of arguments for 'ping' command", RespType::ERROR);
     }
 }
