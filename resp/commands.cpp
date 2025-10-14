@@ -1,5 +1,5 @@
-#include "../../include/commands.h"
-#include "../../include/db_wrapper.h"
+#include "../include/commands.h"
+#include "../include/db_wrapper.h"
 #include <iostream>
 
 

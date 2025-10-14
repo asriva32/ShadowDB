@@ -27,7 +27,7 @@ const std::unordered_map<char, RespType> RESP_TYPE_MAP = {
 class Resp{
 public:
 
-Resp(const std::string &data, RespType r): data(data), r(r) {}
+Resp(std::string data, RespType r): data(std::move(data)), r(r) {}
 Resp(const std::vector<Resp> &data, RespType r): data(data), r(r) {}
 
 std::string getSerialized() const {
