@@ -35,5 +35,7 @@ set(Sources
 
 
 add_library(${This} STATIC ${Sources} ${Headers})
+add_executable(${PROJECT_NAME} resp/server.cpp)
+target_link_libraries(ShadowDB PRIVATE ${This})
 
 add_subdirectory(tests)
