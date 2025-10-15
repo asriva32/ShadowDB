@@ -15,13 +15,14 @@ struct Node{
     Node(const T &k): key(k), height(1), left(nullptr), right(nullptr), parent(nullptr) {}
 };
 
-template<typename T, std::strict_weak_order<T, T> Comparator>
+template<typename T, typename Comparator>
 class RBTree {
 public:
     RBTree(Comparator comparator): root(nullptr), comp(comparator), node_count(0) {}
     ~RBTree() { deleteTree(root); }
 
     void insert(const T &key);
+    std::pair<bool, T> get(const T &key);
     bool contains(const T &key);
     int size();
 
@@ -37,7 +38,7 @@ private:
     void deleteTree(Node<T>* &node);
 };
 
-template<typename T, std::strict_weak_order<T, T> Comparator>
+template<typename T, typename Comparator>
 void RBTree<T, Comparator>::leftRotate(Node<T>* &node) {
     Node<T>* child = node->right;
     node->right = child->left;
@@ -56,7 +57,7 @@ void RBTree<T, Comparator>::leftRotate(Node<T>* &node) {
     node->parent = child;
 }
 
-template<typename T, std::strict_weak_order<T, T> Comparator>
+template<typename T, typename Comparator>
 void RBTree<T, Comparator>::rightRotate(Node<T>* &node) {
     Node<T>* child = node->left;
     node->left = child->right;
@@ -75,7 +76,7 @@ void RBTree<T, Comparator>::rightRotate(Node<T>* &node) {
     node->parent = child;
 }
 
-template<typename T, std::strict_weak_order<T, T> Comparator>
+template<typename T, typename Comparator>
 void RBTree<T, Comparator>::fixInsert(Node<T>* &node) {
     Node<T>* parent = nullptr;
     Node<T>* grandparent = nullptr;
@@ -122,14 +123,14 @@ void RBTree<T, Comparator>::fixInsert(Node<T>* &node) {
     root->color = BLACK;
 }
 
-template<typename T, std::strict_weak_order<T, T> Comparator>
+template<typename T, typename Comparator>
 void RBTree<T, Comparator>::insert(const T &key) {
     Node<T>* node = new Node(key);
         Node<T>* parent = nullptr;
         Node<T>* current = root;
         while (current != nullptr) {
             parent = current;
-            if (comp(node->key, current->key)) {
+            if (comp(node->key, current->key) == -1) {
                 current = current->left;
             } else {
                 current = current->right;
@@ -138,7 +139,7 @@ void RBTree<T, Comparator>::insert(const T &key) {
         node->parent = parent;
         if (parent == nullptr) {
             root = node;
-        } else if (comp(node->key, parent->key)) {
+        } else if (comp(node->key, parent->key) == -1) {
             parent->left = node;
         } else {
             parent->right = node;
@@ -147,14 +148,30 @@ void RBTree<T, Comparator>::insert(const T &key) {
         ++node_count;
 }
 
-template<typename T, std::strict_weak_order<T, T> Comparator>
+template<typename T, typename Comparator>
+std::pair<bool, T> RBTree<T, Comparator>::get(const T &key) {
+    Node<T>* cur = root;
+    while (cur) {
+        if (comp(cur->key == key) == 0) {
+            return std::make_pair(bool, cur->key);
+        }
+        if (comp(key, cur->key) == -1) {
+            cur = cur->left;
+        } else {
+            cur = cur->right;
+        }
+    }
+    return std::make_pair(false, T());
+}
+
+template<typename T, typename Comparator>
 bool RBTree<T, Comparator>::contains(const T &key) {
     Node<T>* cur = root;
     while (cur) {
-        if (cur->key == key) {
+        if (comp(cur->key == key) == 0) {
             return true;
         }
-        if (comp(key, cur->key)) {
+        if (comp(key, cur->key) == -1) {
             cur = cur->left;
         } else {
             cur = cur->right;
@@ -163,12 +180,12 @@ bool RBTree<T, Comparator>::contains(const T &key) {
     return false;
 }
 
-template<typename T, std::strict_weak_order<T, T> Comparator>
+template<typename T, typename Comparator>
 int RBTree<T, Comparator>::size(){
     return node_count;
 }
 
-template<typename T, std::strict_weak_order<T, T> Comparator>
+template<typename T, typename Comparator>
 void RBTree<T, Comparator>::deleteTree(Node<T>* &node){
     if(node){
         deleteTree(node->left);
