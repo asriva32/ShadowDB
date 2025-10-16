@@ -48,3 +48,23 @@ TEST(RBTests, InsertStress){
         EXPECT_TRUE(tree.contains(i));
     }
 }
+
+TEST(RBTests, IteratorTest){
+    Comparator<int> comp;
+    RBTree<int, Comparator<int>> tree(comp);
+    for(int i = 0; i < 10;i++){
+        tree.insert(i);
+    }
+    int expected = 0;
+    for(auto it = tree.begin(); it != tree.end(); it++){
+        EXPECT_TRUE(*it == expected);
+        expected++;
+    }
+    EXPECT_TRUE(expected == 10);
+
+    auto it = tree.begin();
+    ++it;
+    EXPECT_TRUE(*it == 1);
+    --it;
+    EXPECT_TRUE(*it == 0);
+}

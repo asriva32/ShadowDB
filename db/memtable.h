@@ -1,38 +1,38 @@
-// #ifndef MEMTABLE_H
-// #define MEMTABLE_H
-// #include "rbtree.h"
-// #include <string>
+#ifndef MEMTABLE_H
+#define MEMTABLE_H
+#include "rbtree.h"
+#include <string>
 
-// namespace ShadowDB{
+namespace ShadowDB{
 
-// class MemTable {
+class MemTable {
 
-// struct KeyComparator;
+struct KeyComparator;
 
-// public:
+public:
 
-// MemTable(const KeyComparator& comparator): tree(comparator), comparator(comparator) {}
+MemTable(const KeyComparator& comparator): tree(comparator), comparator(comparator) {}
 
-// void Insert(const std::string &key, const std::string &value);
+void Insert(const std::string &key, const std::string &value);
 
-// std::pair<bool, std::string> Get(const std::string &key);
+std::pair<bool, std::string> Get(const std::string &key);
 
-// void Delete(const std::string &key);
+void Delete(const std::string &key);
 
-// private:
+private:
 
-// struct KeyComparator {
-//     int operator()(const std::pair<std::string, std::string> &a, const std::pair<std::string, std::string> &b) const;
-// };
+struct KeyComparator {
+    int operator()(const std::pair<std::string, std::string> &a, const std::pair<std::string, std::string> &b) const;
+};
 
-// RBTree<std::pair<std::string, std::string>, KeyComparator> tree;
-// KeyComparator comparator;
-// const std::string TOMBSTONE = "tombstone\0";
+RBTree<std::pair<std::string, std::string>, KeyComparator> tree;
+KeyComparator comparator;
+const std::string TOMBSTONE = "tombstone\0";
 
-// };
+};
 
-// }
+}
 
 
 
-// #endif // MEMTABLE_H
+#endif // MEMTABLE_H

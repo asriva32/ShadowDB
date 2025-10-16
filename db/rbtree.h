@@ -27,6 +27,34 @@ public:
     bool contains(const T &key);
     int size();
 
+    class Iterator {
+        public:
+            using DifferenceType = std::ptrdiff_t;
+            using IteratorCategory = std::bidirectional_iterator_tag;
+        public:
+            Iterator() = default;
+            Iterator(const RBTree<T, Comparator>* tree, Node<T> *root): tree(tree), cur(root){}
+            Iterator& operator++();
+            Iterator operator++(int);
+            Iterator& operator--();
+            Iterator operator--(int);
+            T& operator*() { return cur->key; }
+            bool operator==(const Iterator& other) const { return cur == other.cur; }
+            bool operator!=(const Iterator& other) const { return !(*this == other); }
+
+        private:
+            Node<T>* cur;
+            const RBTree<T, Comparator>* tree;
+
+    };
+
+    constexpr Iterator begin() const{
+        return Iterator(this, min_element(root));
+    }
+
+    constexpr Iterator end() const{
+        return Iterator(this, nullptr);
+    }
 
 private:
     Node<T>* root;
@@ -37,6 +65,7 @@ private:
     void rightRotate(Node<T>* &node);
     void fixInsert(Node<T>* &node);
     void deleteTree(Node<T>* &node);
+    Node<T>* min_element(Node<T>* node) const;
 };
 
 template<typename T, typename Comparator>
@@ -193,6 +222,69 @@ void RBTree<T, Comparator>::deleteTree(Node<T>* &node){
         deleteTree(node->right);
         delete node;
     }
+}
+
+template<typename T, typename Comparator>
+Node<T>* RBTree<T, Comparator>::min_element(Node<T>* node) const{
+    if(node == nullptr || node->left == nullptr){
+        return node;
+    }
+    return min_element(node->left);
+}
+
+// Iterator methods
+template<typename T, typename Comparator>
+typename RBTree<T, Comparator>::Iterator& RBTree<T, Comparator>::Iterator::operator++(){
+    if(cur == nullptr){
+        return *this;
+    }
+    if(cur->right){
+        cur = this->tree->min_element(cur->right);
+    }else{
+        Node<T>* parent = cur->parent;
+        while(parent && cur == parent->right){
+            cur = parent;
+            parent = parent->parent;
+        }
+        cur = parent;
+    }
+    return *this;
+}
+
+template<typename T, typename Comparator>
+typename RBTree<T, Comparator>::Iterator RBTree<T, Comparator>::Iterator::operator++(int){
+    Iterator temp = *this;
+    ++(*this);
+    return temp;
+}
+
+template<typename T, typename Comparator>
+typename RBTree<T, Comparator>::Iterator& RBTree<T, Comparator>::Iterator::operator--(){
+    if(cur == nullptr){
+        return *this;
+    }
+    if(cur->left != nullptr){
+        Node<T>* temp = cur->left;
+        while(temp->right){
+            temp = temp->right;
+        }
+        cur = temp;
+    }else{
+        Node<T>* parent = cur->parent;
+        while(parent && cur == parent->left){
+            cur = parent;
+            parent = parent->parent;
+        }
+        cur = parent;
+    }
+    return *this;
+}
+
+template<typename T, typename Comparator>
+typename RBTree<T, Comparator>::Iterator RBTree<T, Comparator>::Iterator::operator--(int){
+    Iterator temp = *this;
+    --(*this);
+    return temp;
 }
 
 #endif //RBTREE_H
