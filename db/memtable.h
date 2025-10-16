@@ -7,9 +7,11 @@ namespace ShadowDB{
 
 class MemTable {
 
-struct KeyComparator;
-
 public:
+
+struct KeyComparator {
+    int operator()(const std::pair<std::string, std::string> &a, const std::pair<std::string, std::string> &b) const;
+};
 
 MemTable(const KeyComparator& comparator): tree(comparator), comparator(comparator) {}
 
@@ -19,11 +21,53 @@ std::pair<bool, std::string> Get(const std::string &key);
 
 void Delete(const std::string &key);
 
-private:
+class Iterator {
+public:
 
-struct KeyComparator {
-    int operator()(const std::pair<std::string, std::string> &a, const std::pair<std::string, std::string> &b) const;
+Iterator(const RBTree<std::pair<std::string, std::string>, KeyComparator>::Iterator& it): it(it) {}
+
+Iterator& operator++() {
+    ++it;
+    return *this;
+}
+
+Iterator operator++(int) {
+    Iterator temp = *this;
+    ++it;
+    return temp;
+}
+
+Iterator& operator--() {
+    --it;
+    return *this;
+}
+
+Iterator operator--(int) {
+    Iterator temp = *this;
+    --it;
+    return temp;
+}
+
+std::pair<std::string, std::string>& operator*() {
+    return *it;
+}
+bool operator==(const Iterator& other) const {  return it == other.it; }
+bool operator!=(const Iterator& other) const { return !(*this == other); }
+
+private:
+RBTree<std::pair<std::string, std::string>, KeyComparator>::Iterator it;
+
 };
+
+Iterator begin() {
+    return Iterator(tree.begin());
+}
+
+Iterator end(){
+    return Iterator(tree.end());
+}
+
+private:
 
 RBTree<std::pair<std::string, std::string>, KeyComparator> tree;
 KeyComparator comparator;

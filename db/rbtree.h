@@ -183,7 +183,7 @@ std::pair<bool, T> RBTree<T, Comparator>::get(const T &key) {
     Node<T>* cur = root;
     while (cur) {
         if (comp(key, cur->key) == 0) {
-            return std::make_pair(true, key);
+            return std::make_pair(true, cur->key);
         }
         if (comp(key, cur->key) == -1) {
             cur = cur->left;

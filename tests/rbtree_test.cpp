@@ -21,7 +21,7 @@ TEST(RBTests, EmptyCase){
     EXPECT_TRUE(tree.size() == 0);
 }
 
-TEST(RBTests, Insert){
+TEST(RBTests, InsertAndGet){
     Comparator<int> comp;
     RBTree<int, Comparator<int>> tree(comp);
     

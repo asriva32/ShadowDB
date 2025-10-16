@@ -1,12 +1,16 @@
 #include "memtable.h"
 
 namespace ShadowDB{
-    void MemTable::Insert(const std::string &key, const std::string &value) {
+
+void MemTable::Insert(const std::string &key, const std::string &value) {
     tree.insert(std::make_pair(key, value));
 }
 
 std::pair<bool, std::string> MemTable::Get(const std::string &key) {
     auto [exists, kv] = tree.get(std::make_pair(key, std::string()));
+    if (exists && kv.second == TOMBSTONE) {
+        return std::make_pair(false, "");
+    }
     return std::make_pair(exists, kv.second);
 }
 
