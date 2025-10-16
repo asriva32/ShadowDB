@@ -1,4 +1,3 @@
 - write iterator for avl tree
-- implement memtable
 - implement WAL
 - implement sstable

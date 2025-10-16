@@ -1,18 +1,19 @@
 #ifndef RBTREE_H
 #define RBTREE_H
 #include <functional>
+#include <iostream>
+#include <cassert>
 
 enum Color {RED, BLACK};
 
 template<typename T>
 struct Node{
-    int height;
     Color color;
     Node<T> *parent;
     Node<T> *left;
     Node<T> *right;
     T key;
-    Node(const T &k): key(k), height(1), left(nullptr), right(nullptr), parent(nullptr) {}
+    Node(const T &k): key(k), left(nullptr), right(nullptr), parent(nullptr) {}
 };
 
 template<typename T, typename Comparator>
@@ -126,34 +127,34 @@ void RBTree<T, Comparator>::fixInsert(Node<T>* &node) {
 template<typename T, typename Comparator>
 void RBTree<T, Comparator>::insert(const T &key) {
     Node<T>* node = new Node(key);
-        Node<T>* parent = nullptr;
-        Node<T>* current = root;
-        while (current != nullptr) {
-            parent = current;
-            if (comp(node->key, current->key) == -1) {
-                current = current->left;
-            } else {
-                current = current->right;
-            }
-        }
-        node->parent = parent;
-        if (parent == nullptr) {
-            root = node;
-        } else if (comp(node->key, parent->key) == -1) {
-            parent->left = node;
+    Node<T>* parent = nullptr;
+    Node<T>* current = root;
+    while (current != nullptr) {
+        parent = current;
+        if (comp(node->key, current->key) == -1) {
+            current = current->left;
         } else {
-            parent->right = node;
+            current = current->right;
         }
-        fixInsert(node);
-        ++node_count;
+    }
+    node->parent = parent;
+    if (parent == nullptr) {
+        root = node;
+    } else if (comp(node->key, parent->key) == -1) {
+        parent->left = node;
+    } else {
+        parent->right = node;
+    }
+    fixInsert(node);
+    ++node_count;
 }
 
 template<typename T, typename Comparator>
 std::pair<bool, T> RBTree<T, Comparator>::get(const T &key) {
     Node<T>* cur = root;
     while (cur) {
-        if (comp(cur->key == key) == 0) {
-            return std::make_pair(bool, cur->key);
+        if (comp(key, cur->key) == 0) {
+            return std::make_pair(true, key);
         }
         if (comp(key, cur->key) == -1) {
             cur = cur->left;
@@ -168,7 +169,7 @@ template<typename T, typename Comparator>
 bool RBTree<T, Comparator>::contains(const T &key) {
     Node<T>* cur = root;
     while (cur) {
-        if (comp(cur->key == key) == 0) {
+        if (comp(key, cur->key) == 0) {
             return true;
         }
         if (comp(key, cur->key) == -1) {

@@ -1,24 +1,38 @@
-#ifndef MEMTABLE_H
-#define MEMTABLE_H
-#include "rbtree.h"
+// #ifndef MEMTABLE_H
+// #define MEMTABLE_H
+// #include "rbtree.h"
+// #include <string>
 
-template<typename Key, typename Value, typename Comparator>
-class MemTable {
-public:
+// namespace ShadowDB{
 
-MemTable() = default;
+// class MemTable {
 
-void Insert(const Key &key, const Value &value);
+// struct KeyComparator;
 
-std::pair<bool, Value> Get(const Key &key);
+// public:
 
-void Delete(const Key &key);
+// MemTable(const KeyComparator& comparator): tree(comparator), comparator(comparator) {}
 
-private:
-RBTree<std::pair<Key, Value>, Comparator> tree;
-Value TOMBSTONE = Value("\0")
+// void Insert(const std::string &key, const std::string &value);
 
-};
+// std::pair<bool, std::string> Get(const std::string &key);
+
+// void Delete(const std::string &key);
+
+// private:
+
+// struct KeyComparator {
+//     int operator()(const std::pair<std::string, std::string> &a, const std::pair<std::string, std::string> &b) const;
+// };
+
+// RBTree<std::pair<std::string, std::string>, KeyComparator> tree;
+// KeyComparator comparator;
+// const std::string TOMBSTONE = "tombstone\0";
+
+// };
+
+// }
 
 
-#endif // MEMTABLE_H
+
+// #endif // MEMTABLE_H

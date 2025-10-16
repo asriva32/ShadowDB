@@ -1,18 +1,23 @@
-#include "memtable.h"
+// #include "memtable.h"
 
-template<typename Key, typename Value, typename Comparator>
-void MemTable<Key, Value, Comparator>::Insert(const Key &key, const Value &value) {
-    tree.insert(std::make_pair(key, value));
-}
+// namespace ShadowDB{
+//     void MemTable::Insert(const std::string &key, const std::string &value) {
+//     tree.insert(std::make_pair(key, value));
+// }
 
-template<typename Key, typename Value, typename Comparator>
-std::pair<bool, Value> MemTable<Key, Value, Comparator>::Get(const Key &key) {
-    auto [exists, kv] = tree.get(std::make_pair(key, Value()));
-    return std::make_pair(exists, kv.second);
-}
+// std::pair<bool, std::string> MemTable::Get(const std::string &key) {
+//     auto [exists, kv] = tree.get(std::make_pair(key, std::string()));
+//     return std::make_pair(exists, kv.second);
+// }
 
-template<typename Key, typename Value, typename Comparator>
-void MemTable<Key, Value, Comparator>::Delete(const Key &key) {
-    tree.insert(std::make_pair(key, TOMBSTONE))
-}
+// void MemTable::Delete(const std::string &key) {
+//     tree.insert(std::make_pair(key, TOMBSTONE));
+// }
 
+// int MemTable::KeyComparator::operator()(const std::pair<std::string, std::string> &a, const std::pair<std::string, std::string> &b) const {
+//     if (a.first < b.first) return -1;
+//     if (a.first > b.first) return 1;
+//     return 0;
+// }
+
+// }

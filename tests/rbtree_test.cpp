@@ -4,10 +4,14 @@
 #include <string>
 #include <set>
 
+
+
 template<typename T>
 struct Comparator{
-    constexpr bool operator()(const T& l, const T& r) const {
-        return l < r;
+    constexpr int operator()(const T& l, const T& r) const {
+        if(l < r) return -1;
+        if(l > r) return 1;
+        return 0;
     }
 };
 
@@ -20,13 +24,15 @@ TEST(RBTests, EmptyCase){
 TEST(RBTests, Insert){
     Comparator<int> comp;
     RBTree<int, Comparator<int>> tree(comp);
+    
     std::set<int> s;
     for(int i = 0; i < 5;i++){
         s.insert(i);
         tree.insert(i);
     }
     for(int i = 0; i < 5;i++){
-        EXPECT_TRUE(s.count(i) == tree.contains(i));
+        auto [found, val] = tree.get(i);
+        EXPECT_TRUE(found);
     }
     EXPECT_FALSE(tree.contains(10000));
 }

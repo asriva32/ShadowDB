@@ -23,6 +23,7 @@ set(Headers
     db/db.h
     db/rbtree.h
     db/status.h
+    db/memtable.h
 )
 
 set(Sources
