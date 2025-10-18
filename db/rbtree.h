@@ -19,13 +19,52 @@ struct Node{
 template<typename T, typename Comparator>
 class RBTree {
 public:
-    RBTree(Comparator comparator): root(nullptr), comp(comparator), node_count(0) {}
+    explicit RBTree(Comparator comparator): root(nullptr), comp(comparator), node_count(0) {}
     ~RBTree() { deleteTree(root); }
+
+    RBTree(const RBTree& other){
+        root = copyTree(other.root, nullptr);
+        node_count = other.node_count;
+    }
+
+    RBTree(RBTree&& other) noexcept{
+        root = other.root;
+        node_count = other.node_count;
+        comp = other.comp;
+        other.root = nullptr;
+        other.node_count = 0;
+    }
+
+    friend void swap(RBTree& obj1, RBTree& obj2) {
+        std::swap(obj1.root, obj2.root);
+        std::swap(obj1.node_count, obj2.node_count);
+    }
+
+    RBTree& operator=(RBTree other){
+        swap(*this, other);
+        return *this;
+    }
+
+    RBTree& operator=(RBTree&& other){
+        if(this != &other){
+            deleteTree(root);
+            root = other.root;
+            node_count = other.node_count;
+            comp = other.comp;
+            other.root = nullptr;
+            other.node_count = 0;
+        }
+        return *this;
+    }
 
     void insert(const T &key);
     std::pair<bool, T> get(const T &key);
     bool contains(const T &key);
     int size();
+
+
+
+    // Iterator
 
     class Iterator {
         public:
@@ -65,6 +104,7 @@ private:
     void rightRotate(Node<T>* &node);
     void fixInsert(Node<T>* &node);
     void deleteTree(Node<T>* &node);
+    Node<T>* copyTree(const Node<T>* node, Node<T>* par);
     Node<T>* min_element(Node<T>* node) const;
 };
 
@@ -215,6 +255,8 @@ int RBTree<T, Comparator>::size(){
     return node_count;
 }
 
+// contructor/destructor helpers
+
 template<typename T, typename Comparator>
 void RBTree<T, Comparator>::deleteTree(Node<T>* &node){
     if(node){
@@ -225,6 +267,22 @@ void RBTree<T, Comparator>::deleteTree(Node<T>* &node){
 }
 
 template<typename T, typename Comparator>
+Node<T>* RBTree<T, Comparator>::copyTree(const Node<T> *node, Node<T> *par){
+    if(!node) return nullptr;
+
+    Node<T>* newNode = new Node(node->key);
+    newNode->color = node->color;
+    newNode->left = copyTree(node->left, newNode);
+    newNode->right = copyTree(node->right, newNode);
+    newNode->parent = par;
+
+    return newNode;
+}
+
+// Iterator methods/helpers
+
+
+template<typename T, typename Comparator>
 Node<T>* RBTree<T, Comparator>::min_element(Node<T>* node) const{
     if(node == nullptr || node->left == nullptr){
         return node;
@@ -232,7 +290,7 @@ Node<T>* RBTree<T, Comparator>::min_element(Node<T>* node) const{
     return min_element(node->left);
 }
 
-// Iterator methods
+
 template<typename T, typename Comparator>
 typename RBTree<T, Comparator>::Iterator& RBTree<T, Comparator>::Iterator::operator++(){
     if(cur == nullptr){

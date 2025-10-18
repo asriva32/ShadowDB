@@ -77,6 +77,4 @@ const std::string TOMBSTONE = "tombstone\0";
 
 }
 
-
-
 #endif // MEMTABLE_H

@@ -68,3 +68,21 @@ TEST(RBTests, IteratorTest){
     --it;
     EXPECT_TRUE(*it == 0);
 }
+
+TEST(RBTests, CopyMove){
+    Comparator<int> comp;
+    RBTree<int, Comparator<int>> tree(comp);
+    RBTree<int, Comparator<int>> tree2(comp);
+    for(int i = 0; i < 10;i++){
+        if(i % 2) tree.insert(i);
+        else tree2.insert(i);
+    }
+    tree = tree2;
+    for(int i = 0; i < 10;i++){
+        EXPECT_EQ(tree.contains(i), tree2.contains(i));
+    }
+    RBTree<int, Comparator<int>> tree3(std::move(tree2));
+    EXPECT_EQ(tree3.size(), 5);
+    EXPECT_EQ(tree2.size(), 0);
+    
+}
