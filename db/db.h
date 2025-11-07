@@ -2,6 +2,7 @@
 #define db_H
 
 #include "status.h"
+#include <expected>
 
 namespace ShadowDB{
     class DB{
@@ -11,9 +12,9 @@ namespace ShadowDB{
         DB(const DB&) = delete;
         DB& operator=(const DB&) = delete;
 
-        virtual ~DB();
+        virtual ~DB() = default;
 
-        virtual Status Set(const std::string &key, const std::string &value) = 0;
+        virtual Status Put(const std::string &key, const std::string &value) = 0;
 
         virtual Status Get(const std::string &key) = 0;
 

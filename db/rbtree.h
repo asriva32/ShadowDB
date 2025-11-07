@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cassert>
 
+// need to replace with skiplist
+
 enum Color {RED, BLACK};
 
 template<typename T>

@@ -13,6 +13,10 @@ enum class StatusCode{
 
 class Status{
 public:
+    Status(): msg(""), code(StatusCode::Ok){}
+    Status(std::string msg): msg(std::move(msg)), code(StatusCode::Ok){}
+    Status(std::string msg, StatusCode code): msg(std::move(msg)), code(code){}
+
     bool ok() const { return (code == StatusCode::Ok); }
 
     bool IsNotFound() const { return code == StatusCode::NotFound; }
@@ -30,9 +34,7 @@ private:
     std::string msg;
     StatusCode code;
     
-    Status(): msg(""), code(StatusCode::Ok){}
-    Status(std::string msg): msg(std::move(msg)){}
-    Status(std::string msg, StatusCode code): msg(std::move(msg)), code(code){}
+    
 };
 
 #endif

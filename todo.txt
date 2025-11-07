@@ -1,3 +1,2 @@
-- implement rule of 5 for rbtree
 - implement WAL
 - implement sstable

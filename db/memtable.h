@@ -5,75 +5,73 @@
 
 namespace ShadowDB{
 
-class MemTable {
+    class MemTable {
 
-public:
+    public:
 
-struct KeyComparator {
-    int operator()(const std::pair<std::string, std::string> &a, const std::pair<std::string, std::string> &b) const;
-};
+        struct KeyComparator {
+            int operator()(const std::pair<std::string, std::string> &a, const std::pair<std::string, std::string> &b) const;
+        };
 
-MemTable(const KeyComparator& comparator): tree(comparator), comparator(comparator) {}
+        MemTable(const KeyComparator& comparator): tree(comparator), comparator(comparator) {}
 
-void Insert(const std::string &key, const std::string &value);
+        void Put(const std::string &key, const std::string &value);
 
-std::pair<bool, std::string> Get(const std::string &key);
+        std::pair<bool, std::string> Get(const std::string &key);
 
-void Delete(const std::string &key);
+        class Iterator {
+        public:
 
-class Iterator {
-public:
+            Iterator(const RBTree<std::pair<std::string, std::string>, KeyComparator>::Iterator& it): it(it) {}
 
-Iterator(const RBTree<std::pair<std::string, std::string>, KeyComparator>::Iterator& it): it(it) {}
+            Iterator& operator++() {
+                ++it;
+                return *this;
+            }
 
-Iterator& operator++() {
-    ++it;
-    return *this;
-}
+            Iterator operator++(int) {
+                Iterator temp = *this;
+                ++it;
+                return temp;
+            }
 
-Iterator operator++(int) {
-    Iterator temp = *this;
-    ++it;
-    return temp;
-}
+            Iterator& operator--() {
+                --it;
+                return *this;
+            }
 
-Iterator& operator--() {
-    --it;
-    return *this;
-}
+            Iterator operator--(int) {
+                Iterator temp = *this;
+                --it;
+                return temp;
+            }
 
-Iterator operator--(int) {
-    Iterator temp = *this;
-    --it;
-    return temp;
-}
+            std::pair<std::string, std::string>& operator*() {
+                return *it;
+            }
+            bool operator==(const Iterator& other) const {  return it == other.it; }
+            bool operator!=(const Iterator& other) const { return !(*this == other); }
 
-std::pair<std::string, std::string>& operator*() {
-    return *it;
-}
-bool operator==(const Iterator& other) const {  return it == other.it; }
-bool operator!=(const Iterator& other) const { return !(*this == other); }
+        private:
+            RBTree<std::pair<std::string, std::string>, KeyComparator>::Iterator it;
 
-private:
-RBTree<std::pair<std::string, std::string>, KeyComparator>::Iterator it;
+        };
 
-};
+        Iterator begin() {
+            return Iterator(tree.begin());
+        }
 
-Iterator begin() {
-    return Iterator(tree.begin());
-}
+        Iterator end(){
+            return Iterator(tree.end());
+        }
 
-Iterator end(){
-    return Iterator(tree.end());
-}
+    private:
+        // need to replace with skiplist
+        RBTree<std::pair<std::string, std::string>, KeyComparator> tree;
+        KeyComparator comparator;
+        const std::string TOMBSTONE = "";
 
-private:
-
-RBTree<std::pair<std::string, std::string>, KeyComparator> tree;
-KeyComparator comparator;
-const std::string TOMBSTONE = "tombstone\0";
-
-};
+    };
 
 }
 
